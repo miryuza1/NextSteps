@@ -1,2 +1,27 @@
 # NextSteps
 NextSteps — an AI-powered job application assistant. Tailor your resume to any job description with ATS optimization and one-page PDF export, generate personalized cover letters, prep for interviews with company-specific question plans and STARR feedback, and track every application in one place. Free tier with usage limits.
+
+# The AI Stack:
+Only one tool was used in this — the Abacus AI Agent, by Abacus.AI. The AI features inside the app itself (resume tailoring, cover letters, interview prep) are powered by Abacus.AI's LLM APIs.
+
+# The Prompt Strategy:
+I began this project by floating the idea of a Resume-Tailoring AI agent, and thought of how I could expand it by adding application tracking, cover letter generation and interview preparation as well. I prompted Abacus to give me an MVP-format document of this entire project, and then told it to make the MVP into an actual first project.
+
+The key to this project was understanding how each of the sections of NextSteps were supposed to work.
+
+# Resume Tailor
+Starting off with the Resume Tailor, I had to give it instructions and information as to how hiring managers read the resumes of students throughout and towards the end of their undergraduate degrees. Users can upload their resume as a PDF (or paste the text), and the AI parses it into a structured format before tailoring. I enforced a LaTeX-based writing system so that the presentation of each tailored resume would be of the highest order — the app offers two template styles (a modern title-first layout and a classic company-first layout), and users can even export the LaTeX source code alongside the PDF. I had to also make sure that the AI would keep each resume to a maximum of one page: the app automatically detects overflow and condenses the content, with a manual "AI Condense to Fit" option in case something goes wrong. I gave it the specific format and order of the different headings, and fed in already-made resumes alongside their LaTeX code for the AI to understand how I wanted the tailored resumes to turn out. I made sure to include a spot for a job description, but made it optional in case users solely wanted to optimize their resumes. A strict rule throughout: the AI is never allowed to invent facts, metrics or achievements the user didn't actually provide — if an experience is barely described, the app instead asks the user to explain what they did in their own words and turns those rough notes into professional bullet points. The final PDFs also keep working clickable links (email, LinkedIn, GitHub).
+
+I then moved on to giving the user the ability to edit their own resume, or parts that they would want to change themselves. This would keep users from feeling disappointed by small details that don't resonate with them.
+
+# Cover Letter Generator
+Next came the Cover Letter Generator. This takes in the user's name as well as the job description and creates a cover letter that contains keywords and phrases that would appeal to the hiring manager. The cover letter maintains formality throughout and is restricted to 250–400 words so it always fits comfortably on one page. A resume can optionally be attached as a PDF or pasted as text, in which case the AI weaves in the user's most relevant, quantified work and projects — and just like the Resume Tailor, it never fabricates achievements.
+
+# Application Tracker
+The Application Tracker was a much easier section. It lets users add any applications they've sent out to a list they can access easily, asking for the company, the job title, the date applied, and any notes. It also lets the user change any application between the statuses of Applied, Interview, Offer, or Rejected, and includes search and status filtering to quickly find any application. It asks for the URL link as well so that the user can revisit that job application from time to time and check on it if needed. The dashboard also shows stats across all tracked applications at a glance.
+
+# Interview Preparation
+And finally the Interview Prep section. Now this isn't your typical run-of-the-mill interview guide that asks you general behavioral questions. No, this interview prep gives you notes and questions specific to the company, the role, and your experience level — reflecting the type of questions that company normally asks its applicants. It asks you for any details/instructions that may have come from an email regarding your job interview and builds a multi-step interview study plan that tells you how to study and practice for it. It walks you through everything from a personalized under-one-minute "tell me about yourself" script (built from your resume) to answering "why this company," through 6–8 technical and 6–8 behavioral questions, with the STARR method (Situation, Task, Action, Result, Reflection) explained for structuring behavioral answers. Users can practice answering any question and get instant AI coaching feedback on their answer. It ends with giving the user mental advice and strategy, while reminding them of small details like being well groomed and having a clean workspace and background if it's a virtual interview.
+
+# Free Tier Use
+Every account starts on the Free tier with everything unlocked: 3 resume tailors, 3 cover letters, 2 interview preps, and 5 tracked applications at a time. Helper features — resume parsing, the one-page condense pass, and interview answer feedback — are unlimited and don't count against these limits.
