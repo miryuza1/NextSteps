@@ -1,0 +1,41 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/ai_job_assistant/nextjs_space/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String           @id @default(cuid())
+  name           String?
+  email          String           @unique
+  password       String
+  plan           String           @default("FREE")
+  resumeTailorCount  Int          @default(0)
+  coverLetterCount   Int          @default(0)
+  interviewPrepCount Int          @default(0)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  applications   JobApplication[]
+}
+
+model JobApplication {
+  id          String   @id @default(cuid())
+  company     String
+  jobTitle    String
+  status      String   @default("Applied")
+  dateApplied DateTime @default(now())
+  jobUrl      String?
+  notes       String?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}
